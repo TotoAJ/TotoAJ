@@ -12,7 +12,9 @@ headers = {
 }
 
 message = '@everyone\n' if ping else ''
+message += '```'
 message += dt['ip']
+message += '```'
 payload = json.dumps({'content': message})
 
 req = Request(webhook_url, data=payload.encode(), headers=headers)
