@@ -1,7 +1,6 @@
 #!/usr/bin/env/python
 import requests, json
 from ip2geotools.databases.noncommercial import DbIpCity
-from urllib.request import *
 
 webhook_url = 'WEBHOOK URL HERE'
 ping = True
