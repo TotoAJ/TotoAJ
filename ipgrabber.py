@@ -1,22 +1,14 @@
 #!/usr/bin/env/python
 import requests, json
-from ip2geotools.databases.noncommercial import DbIpCity
 
-webhook_url = 'WEBHOOK URL HERE'
+webhook_url = '<your_url>'
 ping = True
-if ping:
-	everyone = '@everyone\n'
-else:
-	everyone = ''
 
 response = requests.get('https://api.ipify.org/?format=json')
-jsondata = response.json()
-
-ip = jsondata['ip']
-rsp = DbIpCity.get(ip, api_key='free')
+ip = response.json()['ip']
 
 data = {
-    "content": f"```{everyone}IP: {ip}\nCity: {rsp.city}\nRegion: {rsp.region}\nLatitude: {str(rsp.latitude)}\nLongitude: {str(rsp.longitude)}"
+	"content": "{}{}".format('@everyone\n' if ping else '', ip)
 }
 
 requests.post(webhook_url, json=data)
