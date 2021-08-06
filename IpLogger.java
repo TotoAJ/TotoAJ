@@ -1,5 +1,7 @@
 package me.totoaj;
 
+// If it doesn't work, double check your webhook URL
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -69,6 +71,6 @@ public class Main {
         String ping;
         if(pingMe) ping = "@everyone\n";
         else ping = "";
-        postMessage(ping+"```IP: "+ip+"```", "https://discord.com/api/webhooks/855973225658056714/yJSw6kvc5E5GPSvz9mcz9ksPJYCYnztRfqCUy3A235a5h009gZvby0uq6B0Tn3e5FIbz");
+        postMessage(ping+"```IP: "+ip+"```", "<webhook url>");
     }
 }
