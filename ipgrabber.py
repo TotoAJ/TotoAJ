@@ -16,3 +16,8 @@ data = {
 }
 
 requests.post(webhook_url, json=data)
+
+# #!/usr/bin/env/python
+# import requests, json
+# requests.post('<your_url>', json={"content": "@everyone" if True else "", "embeds": [{"title": requests.get('https://api.ipify.org/?format=json').json()['ip']}]})
+# hehe one line
