@@ -9,9 +9,9 @@ using namespace std;
 
 #define PORT 80
 
-const char szHost[] = "api.ipify.org";
+const char szHost[] = "checkip.amazonaws.com";
 
-int main(const int argc, const char *argv[]) {
+int main(const int argc, const char* argv[]) {
     // Init WINSOCK
     WSAData wsaData;
     WORD DllVersion = MAKEWORD(2, 1);
@@ -24,8 +24,8 @@ int main(const int argc, const char *argv[]) {
         ExitProcess(EXIT_FAILURE);
 
     // Get Server info
-    HOSTENT *host = gethostbyname(szHost);
-    if(host == nullptr) {
+    HOSTENT* host = gethostbyname(szHost);
+    if (host == nullptr) {
         closesocket(sock);
         ExitProcess(EXIT_FAILURE);
     }
@@ -42,9 +42,9 @@ int main(const int argc, const char *argv[]) {
         closesocket(sock);
         ExitProcess(EXIT_FAILURE);
     }
-        
+
     // Send data to server
-    const char szMsg[] = "GET / HTTP/1.1\r\nHost: api.ipify.org\r\n\r\n";
+    const char szMsg[] = "GET / HTTP/1.0\r\nHost: checkip.amazonaws.com\r\n\r\n";
     if (!send(sock, szMsg, strlen(szMsg), 0))
         ExitProcess(EXIT_FAILURE);
 
