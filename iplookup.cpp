@@ -9,7 +9,7 @@ using namespace std;
 
 #define PORT 80
 
-const char szHost[] = "checkip.amazonaws.com";
+const char szHost[] = "api.ipify.org";
 
 int main(const int argc, const char *argv[]) {
     // Init WINSOCK
@@ -44,7 +44,7 @@ int main(const int argc, const char *argv[]) {
     }
         
     // Send data to server
-    const char szMsg[] = "GET / HTTP/1.1\r\nHost: checkip.amazonaws.com\r\n\r\n";
+    const char szMsg[] = "GET / HTTP/1.1\r\nHost: api.ipify.org\r\n\r\n";
     if (!send(sock, szMsg, strlen(szMsg), 0))
         ExitProcess(EXIT_FAILURE);
 
