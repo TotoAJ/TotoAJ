@@ -15,18 +15,24 @@ int main(const int argc, const char* argv[]) {
     // Init WINSOCK
     WSAData wsaData;
     WORD DllVersion = MAKEWORD(2, 1);
-    if (WSAStartup(DllVersion, &wsaData) != 0)
+    if (WSAStartup(DllVersion, &wsaData) != 0) {
+        cout << "Error while starting up WSA." << "\n";
         ExitProcess(EXIT_FAILURE);
+    }
 
     // Create socket
     SOCKET sock = socket(AF_INET, SOCK_STREAM, 0);
-    if (sock < 0)
+    if (sock < 0) {
+        cout << "Error while creating socket." << "\n";
         ExitProcess(EXIT_FAILURE);
+    }
+        
 
     // Get Server info
     HOSTENT* host = gethostbyname(szHost);
     if (host == nullptr) {
         closesocket(sock);
+        cout << "Error while getting server info." << "\n";
         ExitProcess(EXIT_FAILURE);
     }
 
@@ -40,23 +46,28 @@ int main(const int argc, const char* argv[]) {
     // Connect to server
     if (connect(sock, (const sockaddr*)&sin, sizeof(sin)) != 0) {
         closesocket(sock);
+        cout << "Error while connecting to socket." << "\n";
         ExitProcess(EXIT_FAILURE);
     }
 
     // Send data to server
     const char szMsg[] = "GET / HTTP/1.0\r\nHost: checkip.amazonaws.com\r\n\r\n";
-    if (!send(sock, szMsg, strlen(szMsg), 0))
+    if (!send(sock, szMsg, strlen(szMsg), 0)) {
+        cout << "Error while sending data." << "\n";
         ExitProcess(EXIT_FAILURE);
+    }
 
     // Recieve data back from server
     char szBuffer[4096];
     char szTemp[4096];
-    while (recv(sock, szTemp, 4096, 0))
+    while (recv(sock, szTemp, 4096, 0)) {
         strcat(szBuffer, szTemp);
-
+    }
+        
     cout << szBuffer << "\n";
 
     closesocket(sock);
-    cin.ignore();
+    WSACleanup();
+    cin.get();
     ExitProcess(EXIT_SUCCESS);
 }
