@@ -1,6 +1,5 @@
 #include <iostream>
 #include <Windows.h>
-#include "tlib.hpp"
 
 BOOL CALLBACK EnumWindowsProc(HWND hWnd, LPARAM lParam) {
 	DWORD dwThreadId, dwProcessId;
@@ -19,7 +18,7 @@ BOOL CALLBACK EnumWindowsProc(HWND hWnd, LPARAM lParam) {
 }
 
 int main() {
-	const char* dllPath = "C:\\Users\\Marcu\\Desktop\\Matias\\Scripts\\DLL\\x64\\Debug\\Dll2.dll";
+	const char* dllPath = "Path to dll with .dll extension";
 	DWORD procId = 0;
 	std::cout << "Target Programs:\n" << std::endl;
 	EnumWindows(EnumWindowsProc, NULL);
@@ -46,7 +45,6 @@ int main() {
 	if (hProc) {
 		CloseHandle(hProc);
 	}
-
-	using namespace tlib;
-	ExitProgram(Exit_Success);
+	
+	return 0;
 }
