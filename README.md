@@ -1,8 +1,7 @@
 > I'm TotoAJ.
 > 
-> I'm a freelance coder who does it in his spare time.
+> I like to code.
 > 
-> I mostly work with C/C++ and JS, and I like to code Discord Bots and webhooks.
+> I mostly work with Java currently, as I am taking AP Compute Science A (Java)
 > 
-> Programming Languages I have (at least the basics) of:
-> C, C++, JS, Py, Go, VB, Lua, Java
+> I'm learning how to make minecraft mods
